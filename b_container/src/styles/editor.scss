@@ -1,0 +1,23 @@
+@import 'common';
+.wp-block{
+	max-width: 100%;
+}
+.block-editor__typewriter{
+	.block-editor-block-list__layout:first-child{
+		padding-left: 0;
+		padding-right: 0;
+	}
+}
+
+.container{
+	background: lighten($colorGreyLight, 5);
+	border: 1px solid darken($color: $colorGreyLight, $amount: .5);
+	margin: 0 58px;
+	&.is-fluid{
+		margin:0;
+		padding: 0 58px;
+	}
+	&.is-fluidc{
+		margin:0;
+	}
+}
