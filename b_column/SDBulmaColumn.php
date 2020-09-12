@@ -46,6 +46,10 @@ class SDBulmaColumn
 						"type" => 'integer',
 						"default" => 6
 					],
+					"offsetFullHD" => [
+						"type" => 'integer',
+						"default" => 0
+					],
 					"editWidescreen" => [
 						"type" => 'boolean',
 						"default" => false
@@ -53,6 +57,10 @@ class SDBulmaColumn
 					"widthWidescreen" => [
 						"type" => 'integer',
 						"default" => 6
+					],
+					"offsetWidescreen" => [
+						"type" => 'integer',
+						"default" => 0
 					],
 					"editDesktop" => [
 						"type" => 'boolean',
@@ -62,6 +70,10 @@ class SDBulmaColumn
 						"type" => 'integer',
 						"default" => 6
 					],
+					"offsetDesktop" => [
+						"type" => 'integer',
+						"default" => 0
+					],
 					"editTablet" => [
 						"type" => 'boolean',
 						"default" => false
@@ -70,6 +82,10 @@ class SDBulmaColumn
 						"type" => 'integer',
 						"default" => 6
 					],
+					"offsethTablet" => [
+						"type" => 'integer',
+						"default" => 0
+					],
 					"editMobile" => [
 						"type" => 'boolean',
 						"default" => false
@@ -77,6 +93,10 @@ class SDBulmaColumn
 					"widthMobile" => [
 						"type" => 'integer',
 						"default" => 12
+					],
+					"offsetMobile" => [
+						"type" => 'integer',
+						"default" => 0
 					],
 					"colorBG" => [
 						"type" => 'string',
@@ -94,16 +114,26 @@ class SDBulmaColumn
 		$classes = ['column'];
 		$styles = [];
 
-		if ($attributes['editMobile'])
+		if ($attributes['editMobile']) {
 			$classes[] = 'is-' . $attributes['widthMobile'] . '-mobile';
-		if ($attributes['editTablet'])
+			$classes[] = 'is-offset-' . $attributes['offsetMobile'] . '-mobile';
+		}
+		if ($attributes['editTablet']) {
 			$classes[] = 'is-' . $attributes['widthTablet'] . '-tablet';
-		if ($attributes['editDesktop'])
+			$classes[] = 'is-offset-' . $attributes['offsetTablet'] . '-tablet';
+		}
+		if ($attributes['editDesktop']) {
 			$classes[] = 'is-' . $attributes['widthDesktop'] . '-desktop';
-		if ($attributes['editWidescreen'])
+			$classes[] = 'is-offset-' . $attributes['offsetDesktop'] . '-desktop';
+		}
+		if ($attributes['editWidescreen']) {
 			$classes[] = 'is-' . $attributes['widthWidescreen'] . '-widescreen';
-		if ($attributes['editFullHD'])
+			$classes[] = 'is-offset-' . $attributes['offsetWidescreen'] . '-widescreen';
+		}
+		if ($attributes['editFullHD']) {
 			$classes[] = 'is-' . $attributes['widthFullHD'] . '-fullhd';
+			$classes[] = 'is-offset-' . $attributes['offsetFullHD'] . '-fullhd';
+		}
 		if ($attributes['colorBG'] != 'transparent')
 			$styles[] = 'background-color:' . $attributes['colorBG'];
 
