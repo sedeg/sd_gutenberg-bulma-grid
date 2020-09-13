@@ -102,6 +102,14 @@ class SDBulmaColumn
 						"type" => 'string',
 						"default" => "transparent"
 					],
+					"paddingTop" => [
+						"type" => 'boolean',
+						"default" => false
+					],
+					"paddingBottom" => [
+						"type" => 'boolean',
+						"default" => false
+					],
 				],
 				'render_callback' => [$this, 'renderCallback']
 			]
@@ -136,6 +144,13 @@ class SDBulmaColumn
 		}
 		if ($attributes['colorBG'] != 'transparent')
 			$styles[] = 'background-color:' . $attributes['colorBG'];
+
+		if ($attributes['paddingTop'])
+			$classes[] = 'column--pt';
+
+		if ($attributes['paddingBottom'])
+			$classes[] = 'column--pb';
+
 
 		ob_start();
 		include __DIR__ . '/templates/sd-bulma-column.php';

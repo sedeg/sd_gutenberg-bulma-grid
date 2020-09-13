@@ -1,23 +1,2 @@
-.container.is-fluid.no-padding {
-  padding-left: 0;
-  padding-right: 0; }
+.container.is-fluid.no-padding{padding-left:0;padding-right:0}.wp-block{max-width:100%}.block-editor__typewriter .block-editor-block-list__layout:first-child{padding-left:0;padding-right:0}.container{background:#fbfbfb;border:1px solid #ededed;margin:0 58px}.container.is-fluid{margin:0;padding:0 58px}.container.is-fluidc{margin:0}
 
-.wp-block {
-  max-width: 100%; }
-
-.block-editor__typewriter .block-editor-block-list__layout:first-child {
-  padding-left: 0;
-  padding-right: 0; }
-
-.container {
-  background: #fbfbfb;
-  border: 1px solid #ededed;
-  margin: 0 58px; }
-  .container.is-fluid {
-    margin: 0;
-    padding: 0 58px; }
-  .container.is-fluidc {
-    margin: 0; }
-
-
-/*# sourceMappingURL=editor.css.map*/

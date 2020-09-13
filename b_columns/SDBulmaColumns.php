@@ -59,7 +59,7 @@ class SDBulmaColumns
 	public function renderCallback($attributes, $content)
 	{
 		wp_enqueue_style('sd-bulma-columns-fe');
-		$classes = ['columns'];
+		$classes = ['columns columns--nm'];
 		$styles = [];
 
 

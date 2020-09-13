@@ -50,6 +50,10 @@ class SDBulmaContainer
 						'type' => 'boolean',
 						'default' => true
 					],
+					'minHeight' => [
+						'type' => 'string',
+						'default' => 'auto'
+					],
 				],
 				'render_callback' => [$this, 'renderCallback']
 			]
@@ -80,6 +84,9 @@ class SDBulmaContainer
 
 		if ($attributes['colorBG'] != 'transparent')
 			$styles[] = 'background-color:' . $attributes['colorBG'];
+
+		if ($attributes['minHeight'] != "auto")
+			$styles[] = 'min-height:' . $attributes['minHeight'];
 
 		ob_start();
 		include __DIR__ . $template;

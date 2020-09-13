@@ -27,7 +27,9 @@ class SDBulmaColumn extends Component {
 		editMobile,
 		widthMobile,
 		offsetMobile,
-		colorBG
+		colorBG,
+		paddingTop,
+		paddingBottom
 	) {
 		return {
 			editFullHD,
@@ -45,7 +47,9 @@ class SDBulmaColumn extends Component {
 			editMobile,
 			widthMobile,
 			offsetMobile,
-			colorBG
+			colorBG,
+			paddingTop,
+			paddingBottom
 		};
 	}
 
@@ -67,7 +71,9 @@ class SDBulmaColumn extends Component {
 			editMobile,
 			widthMobile,
 			offsetMobile,
-			colorBG
+			colorBG,
+			paddingTop,
+			paddingBottom
 		} = this.props.attributes;
 		this.state = this.constructor.getInitialState(
 			editFullHD,
@@ -85,7 +91,9 @@ class SDBulmaColumn extends Component {
 			editMobile,
 			widthMobile,
 			offsetMobile,
-			colorBG
+			colorBG,
+			paddingTop,
+			paddingBottom
 		);
 	}
 
@@ -123,9 +131,15 @@ class SDBulmaColumn extends Component {
 			editMobile,
 			widthMobile,
 			offsetMobile,
-			colorBG
+			colorBG,
+			paddingTop,
+			paddingBottom
 		} = this.state;
-		const colClass = classNames({ column: true });
+		const colClass = classNames(
+			{ column: true },
+			{ 'column--pt': paddingTop },
+			{ 'column--pb': paddingBottom }
+		);
 
 		const styles = {
 			backgroundColor: colorBG
@@ -292,6 +306,26 @@ class SDBulmaColumn extends Component {
 								</>
 							) : null}
 						</PanelBody>
+						<PanelBody title="Layout options">
+							<>
+								<ToggleControl
+									label="Add padding top?"
+									checked={paddingTop}
+									help={paddingTop ? 'active' : ''}
+									onChange={paddingTop =>
+										this.changeValue('paddingTop', paddingTop)
+									}
+								/>
+								<ToggleControl
+									label="Add padding bottom?"
+									checked={paddingBottom}
+									help={paddingBottom ? 'active' : ''}
+									onChange={paddingBottom =>
+										this.changeValue('paddingBottom', paddingBottom)
+									}
+								/>
+							</>
+						</PanelBody>
 						<PanelBody title="Color options">
 							<ColorPalette
 								colors={colors}
@@ -377,6 +411,14 @@ registerBlockType('sd/bulma-column', {
 		colorBG: {
 			type: 'string',
 			default: 'transparent'
+		},
+		paddingTop: {
+			type: 'boolean',
+			default: false
+		},
+		paddingBottom: {
+			type: 'boolean',
+			default: false
 		}
 	},
 	edit: SDBulmaColumn,

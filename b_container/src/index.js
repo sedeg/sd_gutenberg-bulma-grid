@@ -1,39 +1,44 @@
 import { registerBlockType } from '@wordpress/blocks';
 import { Component } from '@wordpress/element';
-import {
-	InnerBlocks,
-	InspectorControls,
-	BlockControls
-} from '@wordpress/block-editor';
+import { InnerBlocks, InspectorControls } from '@wordpress/block-editor';
 import {
 	PanelBody,
 	SelectControl,
 	ColorPalette,
 	ToggleControl,
 	ButtonGroup,
-	Button
+	Button,
+	TextControl
 } from '@wordpress/components';
 import { colors } from '../../utils/colors';
 import classNames from 'classnames';
 
 class SDBulmaContainer extends Component {
-	static getInitialState(width, colorBG, removePadding, alignment) {
+	static getInitialState(width, colorBG, removePadding, alignment, minHeight) {
 		return {
 			width,
 			colorBG,
 			removePadding,
-			alignment
+			alignment,
+			minHeight
 		};
 	}
 
 	constructor() {
 		super(...arguments);
-		const { width, colorBG, removePadding, alignment } = this.props.attributes;
+		const {
+			width,
+			colorBG,
+			removePadding,
+			alignment,
+			minHeight
+		} = this.props.attributes;
 		this.state = this.constructor.getInitialState(
 			width,
 			colorBG,
 			removePadding,
-			alignment
+			alignment,
+			minHeight
 		);
 	}
 
@@ -51,17 +56,25 @@ class SDBulmaContainer extends Component {
 	};
 
 	render() {
-		const { width, colorBG, removePadding, alignment } = this.state;
+		const { width, colorBG, removePadding, alignment, minHeight } = this.state;
 		const size = width !== 'default' ? `is-${width}` : '';
 		const containerClass = classNames('container', size);
 		const styles = {
-			backgroundColor: colorBG
+			backgroundColor: colorBG,
+			minHeight
 		};
 		return (
 			<>
 				{
 					<InspectorControls key="inspector">
-						<PanelBody title="Container Width">
+						<PanelBody title="Layout options">
+							<TextControl
+								label="min. height"
+								value={minHeight}
+								onChange={minHeight => {
+									this.changeValue('minHeight', minHeight);
+								}}
+							/>
 							<SelectControl
 								value={width}
 								options={[
@@ -127,7 +140,11 @@ registerBlockType('sd/bulma-container', {
 		},
 		alignment: {
 			type: 'string',
-			default: 'center center'
+			default: 'center'
+		},
+		minHeight: {
+			type: 'string',
+			default: 'auto'
 		}
 	},
 	edit: SDBulmaContainer,

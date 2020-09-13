@@ -1,1 +1,15 @@
-@import "../../../styles/lib/colors";
+@import "../../../utils/colors";
+@import "../../../utils/variables";
+
+.container{
+	.columns{
+		.column{
+			&--pt{
+				padding-top: $columnPaddingTop;
+			}
+			&--pb{
+				padding-bottom: $columnPaddingBottom;
+			}
+		}
+	}
+}
