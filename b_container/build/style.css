@@ -1,2 +1,2 @@
-.container.is-fluid.no-padding{padding-left:0;padding-right:0}
+.container.is-fluid .container{position:relative;z-index:2}.container.is-fluid.no-padding{padding-left:0;padding-right:0}.container--bg{background-size:cover;height:100%;left:0;position:absolute;top:0;width:100%;z-index:2}
 

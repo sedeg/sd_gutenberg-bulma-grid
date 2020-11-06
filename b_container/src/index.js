@@ -1,6 +1,10 @@
 import { registerBlockType } from '@wordpress/blocks';
 import { Component } from '@wordpress/element';
-import { InnerBlocks, InspectorControls } from '@wordpress/block-editor';
+import {
+	InnerBlocks,
+	InspectorControls,
+	MediaUpload
+} from '@wordpress/block-editor';
 import {
 	PanelBody,
 	SelectControl,
@@ -14,12 +18,18 @@ import { colors } from '../../utils/colors';
 import classNames from 'classnames';
 
 class SDBulmaContainer extends Component {
-	static getInitialState(width, colorBG, removePadding, alignment, minHeight) {
+	static getInitialState(
+		width,
+		colorBG,
+		removePadding,
+		backgroundImage,
+		minHeight
+	) {
 		return {
 			width,
 			colorBG,
 			removePadding,
-			alignment,
+			backgroundImage,
 			minHeight
 		};
 	}
@@ -30,14 +40,14 @@ class SDBulmaContainer extends Component {
 			width,
 			colorBG,
 			removePadding,
-			alignment,
+			backgroundImage,
 			minHeight
 		} = this.props.attributes;
 		this.state = this.constructor.getInitialState(
 			width,
 			colorBG,
 			removePadding,
-			alignment,
+			backgroundImage,
 			minHeight
 		);
 	}
@@ -56,7 +66,14 @@ class SDBulmaContainer extends Component {
 	};
 
 	render() {
-		const { width, colorBG, removePadding, alignment, minHeight } = this.state;
+		const {
+			width,
+			colorBG,
+			removePadding,
+			alignment,
+			minHeight,
+			backgroundImage
+		} = this.state;
 		const size = width !== 'default' ? `is-${width}` : '';
 		const containerClass = classNames('container', size);
 		const styles = {
@@ -104,12 +121,36 @@ class SDBulmaContainer extends Component {
 								onChange={colorBG => this.changeValue('colorBG', colorBG)}
 							/>
 						</PanelBody>
-						<PanelBody title="Content alignment">
-							<ButtonGroup label="Vertical alignment">
-								<Button isSecondary>Top</Button>
-								<Button isSecondary>center</Button>
-								<Button isSecondary>Bottom</Button>
-							</ButtonGroup>
+						<PanelBody title="Background Image">
+							<MediaUpload
+								onSelect={backgroundImage =>
+									this.changeValue('backgroundImage', backgroundImage)
+								}
+								type="image"
+								value={backgroundImage}
+								render={({ open }) => (
+									<>
+										{Object.keys(backgroundImage).length !== 0 ? (
+											<img
+												src={backgroundImage.sizes.thumbnail.url}
+												width="150"
+												height="150"
+											/>
+										) : null}
+										<button className="button is-secondary" onClick={open}>
+											upload Image
+										</button>
+									</>
+								)}
+							/>
+							<div>
+								<button
+									onClick={() => this.changeValue('backgroundImage', {})}
+									className="button is-red is-small"
+								>
+									remove Image
+								</button>
+							</div>
 						</PanelBody>
 					</InspectorControls>
 				}
@@ -145,6 +186,10 @@ registerBlockType('sd/bulma-container', {
 		minHeight: {
 			type: 'string',
 			default: 'auto'
+		},
+		backgroundImage: {
+			type: 'object',
+			default: {}
 		}
 	},
 	edit: SDBulmaContainer,

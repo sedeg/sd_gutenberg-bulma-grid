@@ -50,6 +50,11 @@ class SDBulmaColumns
 						"type" => 'string',
 						"default" => "transparent"
 					],
+					'alignment' =>
+					[
+						"type" => 'boolean',
+						"default" => false
+					],
 				],
 				'render_callback' => [$this, 'renderCallback']
 			]
@@ -64,6 +69,7 @@ class SDBulmaColumns
 
 
 		$classes[] = ($attributes['isGapless']) ?  'is-gapless' : 'is-variable is-' . $attributes['gapSize'];
+		$classes[] = ($attributes['alignment']) ?  'is-vcentered' : '';
 		if ($attributes['colorBG'] != 'transparent')
 			$styles[] = 'background-color:' . $attributes['colorBG'];
 

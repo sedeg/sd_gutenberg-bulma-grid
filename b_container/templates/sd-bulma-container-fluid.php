@@ -2,4 +2,5 @@
 	<div class="container">
 		<?php echo locate_template(include __DIR__ . '/partials/content.php'); ?>
 	</div>
+	<?php echo $bgContainer;?>
 </section>

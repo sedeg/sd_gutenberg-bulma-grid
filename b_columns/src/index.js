@@ -5,7 +5,8 @@ import {
 	PanelBody,
 	ToggleControl,
 	RangeControl,
-	ColorPalette
+	ColorPalette,
+	SelectControl
 } from '@wordpress/components';
 import classNames from 'classnames';
 import { colors } from '../../utils/colors';
@@ -17,18 +18,24 @@ const template = [
 ];
 
 class SDBulmaColumns extends Component {
-	static getInitialState(isGapless, gapSize, colorBG) {
+	static getInitialState(isGapless, gapSize, colorBG, alignment) {
 		return {
 			isGapless,
 			gapSize,
-			colorBG
+			colorBG,
+			alignment
 		};
 	}
 
 	constructor() {
 		super(...arguments);
-		const { isGapless, gapSize, colorBG } = this.props.attributes;
-		this.state = this.constructor.getInitialState(isGapless, gapSize, colorBG);
+		const { isGapless, gapSize, colorBG, alignment } = this.props.attributes;
+		this.state = this.constructor.getInitialState(
+			isGapless,
+			gapSize,
+			colorBG,
+			alignment
+		);
 	}
 
 	changeValue = (style, definition) => {
@@ -45,7 +52,7 @@ class SDBulmaColumns extends Component {
 	};
 
 	render() {
-		const { isGapless, gapSize, colorBG } = this.state;
+		const { isGapless, gapSize, colorBG, alignment } = this.state;
 		const gap = !isGapless ? `is-${gapSize}` : '';
 		const colClass = classNames('columns', gap);
 		const styles = {
@@ -79,6 +86,14 @@ class SDBulmaColumns extends Component {
 								onChange={colorBG => this.changeValue('colorBG', colorBG)}
 							/>
 						</PanelBody>
+						<PanelBody title="Content alignment">
+							<ToggleControl
+								label="content vertically centered?"
+								checked={alignment}
+								help={alignment ? 'is-vcentered' : null}
+								onChange={isGapless => this.changeValue('alignment', alignment)}
+							/>
+						</PanelBody>
 					</InspectorControls>
 				}
 				<section className={colClass} style={styles}>
@@ -105,6 +120,10 @@ registerBlockType('sd/bulma-columns', {
 		colorBG: {
 			type: 'string',
 			default: 'transparent'
+		},
+		alignment: {
+			type: 'boolean',
+			default: false
 		}
 	},
 	edit: SDBulmaColumns,

@@ -54,6 +54,11 @@ class SDBulmaContainer
 						'type' => 'string',
 						'default' => 'auto'
 					],
+					'backgroundImage' =>
+					[
+						"type" => 'object',
+						"default" => []
+					],
 				],
 				'render_callback' => [$this, 'renderCallback']
 			]
@@ -66,6 +71,7 @@ class SDBulmaContainer
 
 		$classesFluidC = [];
 		$styles = [];
+		$bgContainer = '<div class="container--bg" style="background-image:url(' . $attributes['backgroundImage']['sizes']['full']['url'] . ');"></div>';
 
 		switch ($attributes['width']) {
 			case 'fluid':
