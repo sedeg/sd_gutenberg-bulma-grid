@@ -71,7 +71,7 @@ class SDBulmaContainer
 
 		$classesFluidC = [];
 		$styles = [];
-		$bgContainer = '<div class="container--bg" style="background-image:url(' . $attributes['backgroundImage']['sizes']['full']['url'] . ');"></div>';
+		$bgContainer = (!empty($attributes['backgroundImage']['sizes']['full']['url'])) ? '<div class="container--bg" style="background-image:url(' . $attributes['backgroundImage']['sizes']['full']['url'] . ');"></div>' : '';
 
 		switch ($attributes['width']) {
 			case 'fluid':
