@@ -1,8 +1,8 @@
-@import "../../../utils/colors";
+@import "../../../../../themes/kontextur-maps/assets/scss/lib/colors";
 @import "../../../utils/variables";
 
 .container{
-	.columns{
+	.columns{ 
 		.column{
 			&--pt{
 				padding-top: $columnPaddingTop;

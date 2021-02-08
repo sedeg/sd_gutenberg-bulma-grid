@@ -17,7 +17,7 @@ class SDGutenbergBulmaGrid
 	{
 		define('SD_GUTENBERG_BULMA_GRID_BLOCKS_PATH', plugin_dir_path(__FILE__));
 		add_action('init', [$this, 'initBlocks'], 10, 2);
-		add_action('wp_enqueue_scripts', [$this, 'enqueueStylesAndScripts'], 10, 2);
+		// add_action('wp_enqueue_scripts', [$this, 'enqueueStylesAndScripts'], 10, 2);
 		// add_action('admin_enqueue_scripts', [$this, 'enqueueStylesAndScriptsBe'], 10, 2);
 
 		add_filter('block_categories', function ($categories, $post) {

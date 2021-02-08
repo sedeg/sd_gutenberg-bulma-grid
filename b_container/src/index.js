@@ -14,8 +14,10 @@ import {
 	Button,
 	TextControl
 } from '@wordpress/components';
-import { colors } from '../../utils/colors';
+import { colors } from '../../utils/getColors';
 import classNames from 'classnames';
+
+console.log(colors);
 
 class SDBulmaContainer extends Component {
 	static getInitialState(

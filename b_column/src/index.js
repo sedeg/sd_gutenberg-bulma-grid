@@ -8,7 +8,7 @@ import {
 	ColorPalette
 } from '@wordpress/components';
 import classNames from 'classnames';
-import { colors } from '../../utils/colors';
+import { colors } from '../../utils/getColors';
 
 class SDBulmaColumn extends Component {
 	static getInitialState(
