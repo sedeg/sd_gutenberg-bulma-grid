@@ -12,12 +12,11 @@ import {
 	ToggleControl,
 	ButtonGroup,
 	Button,
-	TextControl
+	TextControl,
+	Flex
 } from '@wordpress/components';
-import { colors } from '../../utils/getColors';
+import { colors } from '../../../sd_kontextur-maps/utils/js/getColors';
 import classNames from 'classnames';
-
-console.log(colors);
 
 class SDBulmaContainer extends Component {
 	static getInitialState(
@@ -79,8 +78,10 @@ class SDBulmaContainer extends Component {
 		const size = width !== 'default' ? `is-${width}` : '';
 		const containerClass = classNames('container', size);
 		const styles = {
+			display: 'flex',
 			backgroundColor: colorBG,
-			minHeight
+			minHeight,
+			alignItems: alignment
 		};
 		return (
 			<>
@@ -96,6 +97,7 @@ class SDBulmaContainer extends Component {
 							/>
 							<SelectControl
 								value={width}
+								label="Content H-Alignment"
 								options={[
 									{ label: 'Default', value: 'default' },
 									{ label: 'Fluid, stretch content', value: 'fluidc' },
@@ -115,6 +117,19 @@ class SDBulmaContainer extends Component {
 									}
 								/>
 							) : null}
+							<SelectControl
+								value={alignment}
+								label="Content V-Alignment"
+								options={[
+									{ label: 'Default', value: 'default' },
+									{ label: 'Center', value: 'center' },
+									{ label: 'Top', value: 'flex-start' },
+									{ label: 'Bottom', value: 'flex-end' }
+								]}
+								onChange={alignment => {
+									this.changeValue('alignment', alignment);
+								}}
+							/>
 						</PanelBody>
 						<PanelBody title="Color options">
 							<ColorPalette
@@ -183,7 +198,7 @@ registerBlockType('sd/bulma-container', {
 		},
 		alignment: {
 			type: 'string',
-			default: 'center'
+			default: 'default'
 		},
 		minHeight: {
 			type: 'string',

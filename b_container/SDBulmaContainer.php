@@ -42,6 +42,10 @@ class SDBulmaContainer
 						'type' => 'string',
 						'default' => 'default'
 					],
+					'alignment' => [
+						'type' => 'string',
+						'default' => 'default'
+					],
 					'colorBG' => [
 						'type' => 'string',
 						'default' => 'transparent'
@@ -93,6 +97,9 @@ class SDBulmaContainer
 
 		if ($attributes['minHeight'] != "auto")
 			$styles[] = 'min-height:' . $attributes['minHeight'];
+
+		if ($attributes['alignment'] != "default")
+			$styles[] = 'display:flex;align-items:' . $attributes['alignment'];
 
 		ob_start();
 		include __DIR__ . $template;
